@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #For the time being the device ID is being treated like a constant
-VENDOR_ID=0043
+VENDOR_ID=1a86
 
 #This string of commands gets the current IP address.
 #Command 1: ifconfig prints information about the network connections
@@ -10,11 +10,13 @@ VENDOR_ID=0043
 #Command 4: grep for any IP address not matching the loop back address
 IP_ADDR=$(ip a | grep -Eoh "inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" | awk '{print $2}' | grep -v "127.0.0.1")
 
-#DEV_FILE=ls /dev/serial/by-id | grep 
-echo $IP_ADDR > $(ls /dev/serial/by-id/*_${VENDOR_ID}_*)
+stty -F $(ls /dev/serial/by-id/*${VENDOR_ID}*) ispeed 9600 ospeed 9600 -ignpar cs8 cread -cstopb -echo
 
-
-
+#DEV_FILE=ls /dev/serial/by-id | grep
+echo $IP_ADDR
+echo $IP_ADDR > $(ls /dev/serial/by-id/*${VENDOR_ID}*)
+# echo ZZZ > $(ls /dev/serial/by-id/*${VENDOR_ID}*)
+tail -f $(ls /dev/serial/by-id/*${VENDOR_ID}*)
 
 
 
