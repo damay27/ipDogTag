@@ -22,5 +22,12 @@ stty -F $(ls /dev/serial/by-id/*${VENDOR_ID}*) ispeed 9600 ospeed 9600 -ignpar c
 
 echo $IP_ADDR > $(ls /dev/serial/by-id/*${VENDOR_ID}*)
 
+echo ipDogTag sent value $IP_ADDR >> /var/log/ipDogTag.log 
+
 #See if data was sent back from the device. For debugging only
-#tail -f $(ls /dev/serial/by-id/*${VENDOR_ID}*)
+# RETURN_VAL=$(cat $(ls /dev/serial/by-id/*${VENDOR_ID}*))
+
+# if [$IP_ADDR != RETURN_VAL]
+# then
+#     echo ERROR: Return value $RETURN_VAL != to $IPADDR >> /var/log/ipDogTag.log
+# fi
