@@ -8,8 +8,10 @@ void setup() {
  //Setup the serial port
  Serial.begin(9600);
 
+ Serial.println("Starting up");
+
  //Setup oled display
- if( display.begin(SSD1306_SWITCHCAPVCC, 0x3C) != 0) {
+ if( display.begin(SSD1306_SWITCHCAPVCC, 0x3C) != true) {
   Serial.println("Error setting up display");
  }
 
@@ -30,9 +32,10 @@ void loop() {
     
     display.clearDisplay();
 
+
     display.setTextColor(WHITE);
     display.setTextSize(1, 1);
-    display.setCursor(49, 16);
+    display.setCursor(0, 16);
     display.println(ipString);
   
     display.display();
