@@ -1,0 +1,6 @@
+[Unit]
+Description=This service launches a script that will send the current ip address to the ipDogTag receive device.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ipDogTag.sh

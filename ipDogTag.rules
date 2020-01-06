@@ -1,0 +1,1 @@
+SUBSYSTEM=="usb", ATTR{idVendor}=="1a86", ATTR{idProduct}=="7523", ACTION=="add", RUN+="/bin/systemctl --no-block start ipDogTag"
